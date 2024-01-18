@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form to Google Sheet</title>
+</head>
+<body>
+  <form id="myForm">
+    <input type="text" id="myInput" />
+    <input type="button" value="Submit" onclick="submitForm()" />
+  </form>
+
+  <script>
+    function submitForm() {
+      var inputValue = document.getElementById('myInput').value;
+      google.script.run.onFormSubmit(inputValue);
+      document.getElementById('myForm').reset();
+    }
+  </script>
+
+  <script src="https://script.google.com/macros/s/AKfycbxmj6LPIcidpdarVe13OQu3SXrmUmElqjdSKe6gwTy-Xffz-RRY-ieqvllJXw0nXCb4vQ/exec"></script>
+</body>
+</html>
