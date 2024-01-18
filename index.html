@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Form to Google Sheet</title>
-</head>
-<body>
-  <form id="myForm">
-    <input type="text" id="myInput" />
-    <input type="button" value="Submit" onclick="submitForm()" />
-  </form>
+  <head>
+    <title>Sign Up Form</title>
+  </head>
+  <body>
+    <form id="signupForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br>
 
-  <script>
-    function submitForm() {
-      var inputValue = document.getElementById('myInput').value;
-      google.script.run.onFormSubmit(inputValue);
-      document.getElementById('myForm').reset();
-    }
-  </script>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br>
 
-  <script src="https://script.google.com/macros/s/AKfycbxmj6LPIcidpdarVe13OQu3SXrmUmElqjdSKe6gwTy-Xffz-RRY-ieqvllJXw0nXCb4vQ/exec"></script>
-</body>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+
+      <input type="button" value="Sign Up" onclick="submitForm()">
+    </form>
+
+    <script>
+      function submitForm() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        // Assuming you have the web app URL here
+        var webAppUrl = 'https://script.google.com/macros/s/AKfycbzGO4TFvTNPojE6Nc1xNxulFMbiBKgWkRlK6rGBa_vHHonL2fDyHQu55YrpfP0UW9E6zw/exec';
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', webAppUrl + '?name=' + name + '&email=' + email + '&password=' + password, true);
+        xhr.send();
+
+        document.getElementById('signupForm').reset();
+      }
+    </script>
+  </body>
 </html>
